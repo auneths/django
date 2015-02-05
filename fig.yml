@@ -1,0 +1,15 @@
+db:
+  image: mysql:latest
+  ports:
+   - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: ""
+web:
+  build: .
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+   - .:/code
+  ports:
+   - "8000:8000"
+  links:
+   - db
